@@ -1,0 +1,98 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://jocalomo.dev/challenge"
+           targetNamespace="http://jocalomo.dev/challenge"
+           elementFormDefault="qualified">
+
+    <!-- Pokemon -->
+
+    <xs:complexType name="Pokemon">
+        <xs:sequence>
+            <xs:element name="abilities" type="tns:abilities"/>
+            <xs:element name="base_experience" type="xs:integer"/>
+            <xs:element name="held_items" type="tns:held_item"/>
+            <xs:element name="id" type="tns:id"/>
+            <xs:element name="name" type="tns:name"/>
+            <xs:element name="location_area_encounters" type="tns:location_area_encounters"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ________________________________________________________ -->
+
+    <!-- Habilidades Pokemon -->
+    <xs:complexType name="abilities">
+        <xs:sequence>
+            <xs:element name="id_hiden" type="xs:boolean"/>
+            <xs:element name="slot" type="xs:integer"/>
+            <xs:element name="ability" type="ability"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ability">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="url" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ________________________________________________________ -->
+
+    <!-- Objeto -->
+    <xs:complexType name="held_item">
+        <xs:sequence>
+            <xs:element name="items" type="tns:item"/>
+            <xs:element name="version_details" type="tns:version_detail"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="item">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="url" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="version_detail">
+        <xs:sequence>
+            <xs:element name="rarity" type="xs:integer"/>
+            <xs:element name="version" type="tns:version"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="version">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="url" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ________________________________________________________ -->
+
+    <!-- Id del Pokemon -->
+    <xs:complexType name="id">
+        <xs:sequence>
+            <xs:element name="id" type="xs:integer"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ________________________________________________________ -->
+
+    <!-- Nombre del pokemon -->
+    <xs:complexType name="name">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ________________________________________________________ -->
+
+    <!-- Localizaciones donde lo puedes encontrar -->
+    <xs:complexType name="location_area_encounters">
+        <xs:sequence>
+            <xs:element name="location_area_encounters" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ________________________________________________________ -->
+
+
+</xs:schema>
