@@ -39,7 +39,6 @@ public class PokemonService {
             return gson.fromJson(result, PokemonEntity.class);
         } finally {
             this.close();
-            return null;
         }
     }
 
