@@ -1,5 +1,7 @@
 package org.Challenge.Controllers;
 
+import dev.jocalomo.challenge.*;
+
 import org.Challenge.Services.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -7,11 +9,9 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import java.util.List;
-
 @Endpoint
 public class PokemonController {
-
+    private static final String nps = "http://jocalomo.dev/challenge";
     private final PokemonService pokemonService;
 
     @Autowired
@@ -19,9 +19,15 @@ public class PokemonController {
         this.pokemonService = pokemonService;
     }
 
-    @PayloadRoot(namespace = "http://jocalomo.com/pokemon", localPart = "AbilitiesRequest")
+    @PayloadRoot(namespace = nps, localPart = "GetPokemonRequest")
     @ResponsePayload
-    public String getAbilities(@RequestPayload String request) {
-        return "a";
+    public GetPokemonResponse getPokemon(@RequestPayload GetPokemonRequest request) throws Exception {
+        return pokemonService.getPokemon(request.getName());
     }
+
+   @PayloadRoot(namespace = nps, localPart = "GetAbilitiesRequest")
+   @ResponsePayload
+   public GetPokemonResponse getAbilities(@RequestPayload GetPokemonRequest request) throws Exception {
+       return pokemonService.getAbilities(request.getName());
+   }
 }

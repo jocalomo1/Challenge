@@ -10,9 +10,9 @@
             <xs:element name="abilities" type="tns:abilities"/>
             <xs:element name="base_experience" type="xs:integer"/>
             <xs:element name="held_items" type="tns:held_item"/>
-            <xs:element name="id" type="tns:id"/>
-            <xs:element name="name" type="tns:name"/>
-            <xs:element name="location_area_encounters" type="tns:location_area_encounters"/>
+            <xs:element name="id" type="xs:integer"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="location_area_encounters" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -23,7 +23,7 @@
         <xs:sequence>
             <xs:element name="id_hiden" type="xs:boolean"/>
             <xs:element name="slot" type="xs:integer"/>
-            <xs:element name="ability" type="ability"/>
+            <xs:element name="ability" type="tns:ability"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -67,32 +67,74 @@
 
     <!-- ________________________________________________________ -->
 
-    <!-- Id del Pokemon -->
-    <xs:complexType name="id">
-        <xs:sequence>
-            <xs:element name="id" type="xs:integer"/>
-        </xs:sequence>
-    </xs:complexType>
+    <!-- Requests -->
+    <xs:element name="GetPokemonRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAbilitiesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetBaseExperienceRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetHeldItemsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetNameRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetLocationAreaEncountersRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <!-- ________________________________________________________ -->
 
-    <!-- Nombre del pokemon -->
-    <xs:complexType name="name">
-        <xs:sequence>
-            <xs:element name="name" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
+    <!-- Responses -->
+    <xs:element name="GetPokemonResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Pokemon" type="tns:Pokemon"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <!-- ________________________________________________________ -->
-
-    <!-- Localizaciones donde lo puedes encontrar -->
-    <xs:complexType name="location_area_encounters">
-        <xs:sequence>
-            <xs:element name="location_area_encounters" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
-
-    <!-- ________________________________________________________ -->
-
 
 </xs:schema>
