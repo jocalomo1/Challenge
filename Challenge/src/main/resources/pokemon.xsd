@@ -7,9 +7,9 @@
 
     <xs:complexType name="Pokemon">
         <xs:sequence>
-            <xs:element name="abilities" type="tns:abilities"/>
+            <xs:element name="abilities" type="tns:abilities" maxOccurs="unbounded" />
             <xs:element name="base_experience" type="xs:integer"/>
-            <xs:element name="held_items" type="tns:held_item"/>
+            <xs:element name="held_items" type="tns:held_item" maxOccurs="unbounded" />
             <xs:element name="id" type="xs:integer"/>
             <xs:element name="name" type="xs:string"/>
             <xs:element name="location_area_encounters" type="xs:string"/>

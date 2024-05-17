@@ -1,7 +1,7 @@
 package org.Challenge.Entities;
 
 public class AbilitiesEntity {
-    private Boolean id_hiden;
+    private boolean id_hiden;
     private Integer slot;
     private AbilityEntity ability;
 

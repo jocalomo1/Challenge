@@ -27,7 +27,7 @@ public class PokemonController {
 
    @PayloadRoot(namespace = nps, localPart = "GetAbilitiesRequest")
    @ResponsePayload
-   public GetPokemonResponse getAbilities(@RequestPayload GetPokemonRequest request) throws Exception {
+   public GetPokemonResponse getAbilities(@RequestPayload GetAbilitiesRequest request) throws Exception {
        return pokemonService.getAbilities(request.getName());
    }
 }
