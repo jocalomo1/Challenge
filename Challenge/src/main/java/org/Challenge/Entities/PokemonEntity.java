@@ -5,21 +5,21 @@ import java.util.ArrayList;
 public class PokemonEntity {
     private ArrayList<AbilitiesEntity> abilities;
     private Integer base_experience;
-    private ArrayList<HeldItemsEntity> heldItems;
+    private ArrayList<HeldItemsEntity> held_items;
     private Integer id;
     private String name;
     private String location_area_encounters;
 
     public PokemonEntity(ArrayList<AbilitiesEntity> abilities,
                          Integer base_experience,
-                         ArrayList<HeldItemsEntity> heldItems,
+                         ArrayList<HeldItemsEntity> held_items,
                          Integer id,
                          String name,
                          String location_area_encounters)
     {
         this.abilities = abilities;
         this.base_experience = base_experience;
-        this.heldItems = heldItems;
+        this.held_items = held_items;
         this.id = id;
         this.name = name;
         this.location_area_encounters = location_area_encounters;
@@ -42,11 +42,11 @@ public class PokemonEntity {
     }
 
     public ArrayList<HeldItemsEntity> getHeldItems() {
-        return heldItems;
+        return held_items;
     }
 
     public void setHeldItems(ArrayList<HeldItemsEntity> heldItems) {
-        this.heldItems = heldItems;
+        this.held_items = heldItems;
     }
 
     public Integer getId() {

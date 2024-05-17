@@ -40,7 +40,7 @@
     <xs:complexType name="held_item">
         <xs:sequence>
             <xs:element name="items" type="tns:item"/>
-            <xs:element name="version_details" type="tns:version_detail"/>
+            <xs:element name="version_details" type="tns:version_detail" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 

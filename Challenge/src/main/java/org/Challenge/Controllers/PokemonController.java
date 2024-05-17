@@ -30,4 +30,34 @@ public class PokemonController {
    public GetPokemonResponse getAbilities(@RequestPayload GetAbilitiesRequest request) throws Exception {
        return pokemonService.getAbilities(request.getName());
    }
+
+    @PayloadRoot(namespace = nps, localPart = "GetBaseExperienceRequest")
+    @ResponsePayload
+    public GetPokemonResponse GetBaseExperience(@RequestPayload GetBaseExperienceRequest request) throws Exception {
+        return pokemonService.GetBaseExperience(request.getName());
+    }
+
+    @PayloadRoot(namespace = nps, localPart = "GetIdRequest")
+    @ResponsePayload
+    public GetPokemonResponse GetId(@RequestPayload GetIdRequest request) throws Exception {
+        return pokemonService.GetId(request.getName());
+    }
+
+    @PayloadRoot(namespace = nps, localPart = "GetNameRequest")
+    @ResponsePayload
+    public GetPokemonResponse GetName(@RequestPayload GetNameRequest request) throws Exception {
+        return pokemonService.GetName(request.getName());
+    }
+
+    @PayloadRoot(namespace = nps, localPart = "GetLocationAreaEncountersRequest")
+    @ResponsePayload
+    public GetPokemonResponse GetLocationAreaEncounters(@RequestPayload GetLocationAreaEncountersRequest request) throws Exception {
+        return pokemonService.GetLocationAreaEncounters(request.getName());
+    }
+
+    @PayloadRoot(namespace = nps, localPart = "GetHeldItemsRequest")
+    @ResponsePayload
+    public GetPokemonResponse GetHeldItems(@RequestPayload GetHeldItemsRequest request) throws Exception {
+        return pokemonService.GetHeldItems(request.getName());
+    }
 }

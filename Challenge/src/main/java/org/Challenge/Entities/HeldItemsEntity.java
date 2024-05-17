@@ -1,12 +1,14 @@
 package org.Challenge.Entities;
 
+import java.util.ArrayList;
+
 public class HeldItemsEntity {
     private ItemEntity item;
-    private VersionDetailEntity versionDetail;
+    private ArrayList<VersionDetailEntity> version_details;
 
-    public HeldItemsEntity(ItemEntity item, VersionDetailEntity versionDetail) {
+    public HeldItemsEntity(ItemEntity item, ArrayList<VersionDetailEntity> version_details) {
         this.item = item;
-        this.versionDetail = versionDetail;
+        this.version_details = version_details;
     }
 
     public ItemEntity getItem() {
@@ -15,10 +17,11 @@ public class HeldItemsEntity {
     public void setItem(ItemEntity item) {
         this.item = item;
     }
-    public VersionDetailEntity getVersionDetail() {
-        return versionDetail;
+
+    public ArrayList<VersionDetailEntity> getVersion_details() {
+        return version_details;
     }
-    public void setVersionDetail(VersionDetailEntity versionDetail) {
-        this.versionDetail = versionDetail;
+    public void setVersion_details(ArrayList<VersionDetailEntity> version_details) {
+        this.version_details = version_details;
     }
 }
