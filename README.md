@@ -1,7 +1,6 @@
 # Challenge
 
 # de que es la api
-
 La api es un buscador de pokemones la cual recibe como parametro unicamente el nombre del pokemon, ej. Ditto, entonces nos retornara la siguiente informacion 
 
 ● abilities
@@ -12,8 +11,6 @@ La api es un buscador de pokemones la cual recibe como parametro unicamente el n
 ● location_area_encounters
 
 Como tambien tiene endpoints el cual traen la informacion de cada punto individualmente los cuales estan mas abajo en el archivo.
-
-
 # MySQL
 
 adjunte el archivo sql que se debera ejecutar antes de levantar la api y consumirla.
@@ -74,5 +71,27 @@ a continuacion dejo los otros endpoints solo se deberia remplazar lo que esta de
     <gs:name>ditto</gs:name>
 </gs:GetHeldItemsRequest>
 
+otros nombres de pokemon podrias utilizar
 
-
+bulbasaur
+ivysaur
+venusaur
+charmander
+charmeleon
+charizard
+squirtle
+wartortle
+blastoise
+caterpie
+metapod
+butterfree
+weedle
+kakuna
+beedrill
+pidgey
+pidgeotto
+pidgeot
+rattata
+raticate
+spearow
+fearow

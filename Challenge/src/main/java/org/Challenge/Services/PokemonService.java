@@ -2,6 +2,7 @@ package org.Challenge.Services;
 
 import com.google.gson.Gson;
 import dev.jocalomo.challenge.*;
+import org.Challenge.Config.Flag;
 import org.Challenge.Entities.*;
 import org.Challenge.Repositories.BitacoraRepository;
 import org.apache.http.HttpEntity;
@@ -11,10 +12,9 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PreDestroy;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.Objects;
 
 @Service
 public class PokemonService {
@@ -22,15 +22,12 @@ public class PokemonService {
     public final String urlPokemonApi = "https://pokeapi.co/api/v2/pokemon/";
     private final CloseableHttpClient httpClient = HttpClients.createDefault();
     private final BitacoraRepository bitacoraRepository;
-
     public PokemonService(BitacoraRepository bitacoraRepository) {
         this.bitacoraRepository = bitacoraRepository;
     }
 
     public void saveRequest(BitacoraEntity bitacoraEntity) {
-        System.out.println("Saving request");
         this.bitacoraRepository.save(bitacoraEntity);
-        System.out.println("Saving Done");
     }
 
     public void close() {
@@ -46,10 +43,13 @@ public class PokemonService {
         CloseableHttpResponse response = null;
         try{
             response = httpClient.execute(request);
-            HttpEntity entity = response.getEntity();
-            String result = EntityUtils.toString(entity);
-            Gson gson = new Gson();
-            return gson.fromJson(result, PokemonEntity.class);
+            if(response.getStatusLine().getStatusCode() == 200){
+                HttpEntity entity = response.getEntity();
+                String result = EntityUtils.toString(entity);
+                Gson gson = new Gson();
+                return gson.fromJson(result, PokemonEntity.class);
+            }
+            return null;
         } finally {
             if (response != null) {
                 try {
@@ -105,6 +105,9 @@ public class PokemonService {
                     pokemon.getHeldItems().add(heldItem);
                 }
                 response.setPokemon(pokemon);
+            }else {
+                Flag.setSaveFlag(false);
+                return null;
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -120,6 +123,9 @@ public class PokemonService {
                 Pokemon pokemon = new Pokemon();
                 pokemon.setBaseExperience(BigInteger.valueOf(pokemonEntity.getBase_experience()));
                 response.setPokemon(pokemon);
+            }else {
+                Flag.setSaveFlag(false);
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -135,6 +141,9 @@ public class PokemonService {
                 Pokemon pokemon = new Pokemon();
                 pokemon.setId(BigInteger.valueOf(pokemonEntity.getId()));
                 response.setPokemon(pokemon);
+            }else {
+                Flag.setSaveFlag(false);
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -150,6 +159,9 @@ public class PokemonService {
                 Pokemon pokemon = new Pokemon();
                 pokemon.setName(pokemonEntity.getName());
                 response.setPokemon(pokemon);
+            }else {
+                Flag.setSaveFlag(false);
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -165,6 +177,9 @@ public class PokemonService {
                 Pokemon pokemon = new Pokemon();
                 pokemon.setLocationAreaEncounters(pokemonEntity.getLocation_area_encounters());
                 response.setPokemon(pokemon);
+            }else {
+                Flag.setSaveFlag(false);
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -189,6 +204,9 @@ public class PokemonService {
                     pokemon.getAbilities().add(abilities);
                 }
                 response.setPokemon(pokemon);
+            }else {
+                Flag.setSaveFlag(false);
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -222,6 +240,9 @@ public class PokemonService {
                     pokemon.getHeldItems().add(heldItem);
                 }
                 response.setPokemon(pokemon);
+            }else {
+                Flag.setSaveFlag(false);
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();

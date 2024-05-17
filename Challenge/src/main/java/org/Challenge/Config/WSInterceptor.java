@@ -15,24 +15,20 @@ public class WSInterceptor implements EndpointInterceptor {
     private final HttpServletRequest httpServletRequest;
     private final PokemonService pokemonService;
 
+
     public WSInterceptor(HttpServletRequest httpServletRequest, PokemonService pokemonService) {
         this.httpServletRequest = httpServletRequest;
         this.pokemonService = pokemonService;
+
     }
 
     private String getIp(){
         return httpServletRequest.getRemoteAddr();
     }
 
-
     @Override
     public boolean handleRequest(MessageContext messageContext, Object o) throws Exception {
-        Date date = new Date();
-        BitacoraEntity bitacoraEntity = new BitacoraEntity();
-        bitacoraEntity.setAccion(messageContext.getRequest().toString());
-        bitacoraEntity.setIp_origen(this.getIp());
-        bitacoraEntity.setFecha_movimiento(new Timestamp(date.getTime()));
-        pokemonService.saveRequest(bitacoraEntity);
+        Flag.setSaveFlag(true);
         return true;
     }
 
@@ -48,6 +44,14 @@ public class WSInterceptor implements EndpointInterceptor {
 
     @Override
     public void afterCompletion(MessageContext messageContext, Object o, Exception e) throws Exception {
-
+        if(Flag.shouldSave()){
+            Date date = new Date();
+            BitacoraEntity bitacoraEntity = new BitacoraEntity();
+            bitacoraEntity.setAccion(messageContext.getRequest().toString().split("}")[1]);
+            bitacoraEntity.setIp_origen(this.getIp());
+            bitacoraEntity.setFecha_movimiento(new Timestamp(date.getTime()));
+            pokemonService.saveRequest(bitacoraEntity);
+        }
+        Flag.clear();
     }
 }
